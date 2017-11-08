@@ -183,8 +183,6 @@ def train():
     t_vars = tf.trainable_variables()
     d_vars = [var for var in t_vars if 'dis' in var.name]
     g_vars = [var for var in t_vars if 'gen' in var.name]
-    # test
-    # print(d_vars)
     trainer_d = tf.train.RMSPropOptimizer(learning_rate=2e-4).minimize(d_loss, var_list=d_vars)
     trainer_g = tf.train.RMSPropOptimizer(learning_rate=2e-4).minimize(g_loss, var_list=g_vars)
     # clip discriminator weights
@@ -211,7 +209,7 @@ def train():
     print('batch size: %d, batch num per epoch: %d, epoch num: %d' % (batch_size, batch_num, EPOCH))
     print('start training...')
     for i in range(EPOCH):
-        print(i)
+        print("Running epoch {}/{}...".format(i, EPOCH))
         for j in range(batch_num):
             print(j)
             d_iters = 5
