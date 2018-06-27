@@ -16,7 +16,6 @@ slim = tf.contrib.slim
 HEIGHT, WIDTH, CHANNEL = 128, 128, 3
 BATCH_SIZE = 64
 EPOCH = 5000
-os.environ['CUDA_VISIBLE_DEVICES'] = '15'
 version = 'newPokemon'
 newPoke_path = './' + version
 
@@ -164,7 +163,6 @@ def discriminator(input, is_train, reuse=False):
 
 def train():
     random_dim = 100
-    print(os.environ['CUDA_VISIBLE_DEVICES'])
     
     with tf.variable_scope('input'):
         #real and fake image placholders
@@ -185,8 +183,6 @@ def train():
     t_vars = tf.trainable_variables()
     d_vars = [var for var in t_vars if 'dis' in var.name]
     g_vars = [var for var in t_vars if 'gen' in var.name]
-    # test
-    # print(d_vars)
     trainer_d = tf.train.RMSPropOptimizer(learning_rate=2e-4).minimize(d_loss, var_list=d_vars)
     trainer_g = tf.train.RMSPropOptimizer(learning_rate=2e-4).minimize(g_loss, var_list=g_vars)
     # clip discriminator weights
@@ -213,7 +209,7 @@ def train():
     print('batch size: %d, batch num per epoch: %d, epoch num: %d' % (batch_size, batch_num, EPOCH))
     print('start training...')
     for i in range(EPOCH):
-        print(i)
+        print("Running epoch {}/{}...".format(i, EPOCH))
         for j in range(batch_num):
             print(j)
             d_iters = 5
