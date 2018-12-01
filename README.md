@@ -7,6 +7,7 @@ This is the code for [this](https://youtu.be/yz6dNf7X7SA) video on Youtube by Si
 ```
 cv2
 tensorflow( >=1.0)
+pillow
 scipy
 numpy
 ```
